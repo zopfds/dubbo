@@ -11,7 +11,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>testApi</module>
-		<module>provider</module>
 		<module>consumer</module>
 	</modules>
 	<groupId>com.example</groupId>
@@ -39,12 +38,6 @@
 			<dependency>
 				<groupId>com.example</groupId>
 				<artifactId>testApi</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.example</groupId>
-				<artifactId>provider</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
