@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  provider:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+      - 8081:8081
+    environment:
+      - SERVER_PORT=8081
+    networks:
+      - my-net
+    volumes:
+      - ./:/app
+      - "/usr/local/data/app/log:/usr/local/data/app/log"
+    command: java -Dspring-boot.run.profiles=mysql -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000" -jar ./provider.jar
+
+  mysqlserver:
+    image: mysql:8.0.23
+    ports:
+      - 3306:3306
+    networks:
+      - my-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=client
+      - MYSQL_PASSWORD=client
+      - MYSQL_DATABASE=user
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql/conf.d
+volumes:
+  mysql_data:
+  mysql_config:
+
+networks:
+  my-net:

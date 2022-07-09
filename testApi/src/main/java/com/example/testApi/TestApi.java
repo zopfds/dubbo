@@ -1,6 +1,6 @@
-package com.example.provider;
+package com.example.testApi;
 
-import com.example.provider.dto.UserDto;
+import com.example.testApi.dto.UserDto;
 
 import java.util.List;
 
